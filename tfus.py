@@ -150,7 +150,7 @@ class Instagram(object):
 			"sessionid": self.session_id
 		}, data={
 			"gender": "3",
-			"first_name": "𝐀𝕥𝕝𝕒𝕤",
+			"first_name": "𝐀𝕥𝕝𝕒𝕤 👹👹",
 			"email": self.email,
 			"username": self.username
 		}).status_code == 200
@@ -217,12 +217,12 @@ class Turbo(Thread):
 					break
 
 				self.attempts += 1
-				print("\n[\x1b[35m{}\x1b[0m] Attempt - {:,} attempts".format(i, turbo.attempts), end="\r")
+				print("\nAttempt - {:,} attempts".format(i, turbo.attempts))
 
 				if (self.instagram.bad_account):
 				   break
 				
-				sleep(0.230)	
+				sleep(0.10)	
 			except:
 				continue
 
@@ -252,9 +252,9 @@ def input_password(prompt):
 def on_exit(instagram):
 	if (instagram.logged_in):
 		if (instagram.logout()):
-			print("{} Successfully logged out".format(SUCCESS))
+			#print("{} Successfully logged out".format(SUCCESS))
 		else:
-			print("{} Failed to logout :/".format(ERROR))
+			#print("{} Failed to logout :/".format(ERROR))
 
 def main():
 	print("{}   𝔸𝕥𝕝𝕒𝕤 ℂ𝕝𝕒𝕚𝕞𝕖𝕣   \n".format(SUCCESS))
@@ -285,7 +285,7 @@ def main():
 
 	#print("{} Successfully setup account".format(SUCCESS))
 
-	target = input("\n{} Target: ".format(INPUT)).strip().lower()
+	target = input("{} Target: ".format(INPUT)).strip().lower()
 	print("{}     Atlas Claimer v1 \n".format(SUCCESS))
 	input("{} Press Enter To Start!".format(SUCCESS))
 	print("\x1b[A                                      \x1b[A")
@@ -300,13 +300,13 @@ def main():
 				print("[\x1b[35m{}\x1b[0m] Attempt - {:,} ".format(i, turbo.attempts), end="\r", flush=True)
 				sleep(0.01) # Update attempts every 100ms
 		except KeyboardInterrupt:
-			print("\r{} Turbo stopped, exiting after {:,} attempts...\n".format(ERROR, turbo.attempts))
+			print("\r{} Stopped the Turbo | Attempts: {:,} \n".format(ERROR, turbo.attempts))
 			break
 
 	if (instagram.bad_account):
-		print("\r{} Bad account - Rate limited or spam blocked ({:,} attempts)\n".format(ERROR, turbo.attempts))
+		print("\r{} spam blocked ({:,} attempts)\n".format(ERROR, turbo.attempts))
 	elif (turbo.claimed):
-		print("\r{} Claimed username @{} after {:,} attempts\n".format(SUCCESS, target, turbo.attempts + 1))
+		print("\r{} Claimed: @{} | Attempts: {:,} attempts\n".format(SUCCESS, target, turbo.attempts + 1))
 	elif (turbo.missed_swap):
 		print("\r{} Missed username swap on @{} ({:,} attempts)\n".format(ERROR, target, turbo.attempts + 1))
 
